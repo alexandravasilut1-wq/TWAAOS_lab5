@@ -1,5 +1,7 @@
 import sqlite3
 import jwt
+import os
+from dotenv import load_dotenv
 from contextlib import asynccontextmanager
 from datetime import datetime, timedelta, timezone
 from typing import Optional
@@ -8,16 +10,35 @@ from fastapi import Depends, FastAPI, HTTPException
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from passlib.context import CryptContext
 from pydantic import BaseModel, Field, field_validator
-
+from fastapi.staticfiles import StaticFiles
 
 # ---------------------------------------------------------------------------
 # Configurare
 # ---------------------------------------------------------------------------
 
-DATABASE = "sarcini.db"
-SECRET_KEY = "cheie-secreta-foarte-lunga-schimbati-obligatoriu-in-productie"
-ALGORITHM = "HS256"
-EXPIRARE_TOKEN_MINUTE = 30
+load_dotenv()
+
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    "cheie-dev"
+)
+
+ALGORITHM = os.environ.get(
+    "ALGORITHM",
+    "HS256"
+)
+
+EXPIRARE_TOKEN_MINUTE = int(
+    os.environ.get(
+        "EXPIRARE_TOKEN_MINUTE",
+        "30"
+    )
+)
+
+DATABASE_PATH = os.environ.get(
+    "DATABASE_PATH",
+    "sarcini.db"
+)
 
 context_parola = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_schema = OAuth2PasswordBearer(tokenUrl="autentificare")
@@ -312,7 +333,14 @@ def finalizeaza_sarcina(
     return {"mesaj": "Sarcina a fost finalizata!"}
 
 
-
+@app.mount(
+    "/",
+    StaticFiles(
+        directory="static",
+        html=True
+    ),
+    name="static"
+)
 
 
         

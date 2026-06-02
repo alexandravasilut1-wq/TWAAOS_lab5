@@ -314,7 +314,7 @@ def sterge_sarcina(
 def finalizeaza_sarcina(
     sarcina_id: int,
     db: sqlite3.Connection = Depends(get_db),
-    utilizator_curent=Depends(get_utilizator_curent),
+    utilizator_curent=Depends(get_utilizator_curent)
     ):
     sarcina = db.execute(
         "SELECT * FROM sarcini WHERE id = ? AND utilizator_id = ?",
@@ -331,8 +331,7 @@ def finalizeaza_sarcina(
 
     db.commit()
     return {"mesaj": "Sarcina a fost finalizata!"}
-
-
+    
 @app.mount(
     "/",
     StaticFiles(
@@ -340,4 +339,4 @@ def finalizeaza_sarcina(
         html=True
     ),
     name="static"
-    )
+)

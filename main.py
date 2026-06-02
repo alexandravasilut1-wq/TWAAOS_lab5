@@ -49,7 +49,7 @@ oauth2_schema = OAuth2PasswordBearer(tokenUrl="autentificare")
 # ---------------------------------------------------------------------------
 
 def initializeaza_db():
-    conn = sqlite3.connect(DATABASE)
+    conn = sqlite3.connect(DATABASE_PATH)
     conn.execute("""
         CREATE TABLE IF NOT EXISTS utilizatori (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -72,7 +72,7 @@ def initializeaza_db():
 
 
 def get_db():
-    conn = sqlite3.connect(DATABASE, check_same_thread=False)
+    conn = sqlite3.connect(DATABASE_PATH, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     try:
         conn.execute("PRAGMA foreign_keys = ON")

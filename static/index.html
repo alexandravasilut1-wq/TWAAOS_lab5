@@ -43,6 +43,12 @@
                         <p class="text-center mt-3 mb-0">
                             Ai deja cont? <a href="#" onclick="comutaFormular(); return false;">Autentifică-te</a>
                         </p>
+                        <p class="text-center mt-2">
+                            <button class="btn btn-outline-info"
+                                    onclick="arataAboutMe()">
+                                About Me
+                            </button>
+                        </p>
                     </div>
                 </div>
 
@@ -63,10 +69,51 @@
                         <p class="text-center mt-3 mb-0">
                             Nu ai cont? <a href="#" onclick="comutaFormular(); return false;">Înregistrează-te</a>
                         </p>
+                        <p class="text-center mt-2">
+                            <button class="btn btn-outline-info"
+                                    onclick="arataAboutMe()">
+                                About Me
+                            </button>
+                        </p>
                     </div>
                 </div>
 
             </div>
+        </div>
+    </div>
+
+    <!-- --------- Sectiunea About Me --------- -->
+    <div id="sectiune-about" class="card d-none">
+        <div class="card-body">
+            <h3>About Me</h3>
+
+            <p>
+                Mă numesc Alexandra Vasiluț și sunt studentă.
+            </p>
+
+            <p>
+                Acest proiect a fost realizat în cadrul laboratorului
+                TWAAOS și reprezintă o aplicație web pentru gestionarea
+                sarcinilor personale.
+            </p>
+
+            <p>
+                Funcționalități:
+            </p>
+
+            <ul>
+                <li>Înregistrare utilizatori</li>
+                <li>Autentificare JWT</li>
+                <li>Adăugare sarcini</li>
+                <li>Editare sarcini</li>
+                <li>Ștergere sarcini</li>
+                <li>Finalizare sarcini</li>
+            </ul>
+
+            <button class="btn btn-primary"
+                    onclick="inchideAboutMe()">
+                Înapoi
+            </button>
         </div>
     </div>
 
@@ -358,6 +405,18 @@
         const div = document.createElement("div");
         div.textContent = String(text);
         return div.innerHTML;
+    }
+    
+
+    function arataAboutMe() {
+    document.getElementById("form-autentificare").classList.add("d-none");
+    document.getElementById("form-inregistrare").classList.add("d-none");
+    document.getElementById("sectiune-about").classList.remove("d-none");
+    }
+
+    function inchideAboutMe() {
+        document.getElementById("sectiune-about").classList.add("d-none");
+        document.getElementById("form-autentificare").classList.remove("d-none");
     }
 
     // -------- Initializare --------

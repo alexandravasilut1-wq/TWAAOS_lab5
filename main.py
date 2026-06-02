@@ -331,8 +331,8 @@ def finalizeaza_sarcina(
 
     db.commit()
     return {"mesaj": "Sarcina a fost finalizata!"}
-    
-@app.mount(
+
+app.mount(
     "/",
     StaticFiles(
         directory="static",

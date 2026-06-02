@@ -340,13 +340,4 @@ def finalizeaza_sarcina(
         html=True
     ),
     name="static"
-)
-
-
-        
-        #sarcina_actualizata = db.execute(
-            #"SELECT * FROM sarcini WHERE id = ?",
-            #(sarcina_id,),
-        #).fetchone()
-
-        #return dict(sarcina_actualizata)
+    )
